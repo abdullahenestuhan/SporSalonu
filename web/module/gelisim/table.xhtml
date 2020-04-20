@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:form id="gelisim-table" >
+        <h:dataTable styleClass="table table-striped" value="#{gelisimController.glist}" var="gelisim">
+            <h:column>
+                <f:facet name="header">GELİŞİM ID</f:facet>
+                <h:commandLink action="#{gelisimController.guncelleForm(gelisim)}" value="#{gelisim.gelisim_id}">
+                    <f:ajax execute="@this" render="gelisim-form gelisim-table"/>
+                </h:commandLink>                    
+            </h:column>
+            <h:column>
+                <f:facet name="header">ÜYE ADI</f:facet>
+                    #{gelisim.üye.ad}  
+            </h:column>
+            <h:column>
+                <f:facet name="header">ESKİ KG</f:facet>
+                #{gelisim.eski_kg}
+            </h:column>
+            <h:column>
+                <f:facet name="header">YENİ KG</f:facet>
+                 #{gelisim.yenikg}
+            </h:column>
+            <h:column>
+                <f:facet name="header">YENİ VÜCUT KÜTLE İNDEKSİ</f:facet>
+                #{gelisim.yenivücutkütleindeksi}
+            </h:column>
+            <h:column>
+                <f:facet name="header">ESKİ VÜCUT KÜTLE İNDEKSİ</f:facet>
+                #{gelisim.eskivücutkütleindeksi}
+            </h:column>
+            <h:column>
+                <f:facet name="header">BOY</f:facet>
+                #{gelisim.boy}
+            </h:column>
+            <h:column>
+                <f:facet name="header">SİL</f:facet>
+                <h:commandButton onclick="$('.modal').modal('show')" styleClass="btn btn-sm btn-danger" action="#{gelisimController.silBilgi(gelisim)}"  value="DELETE">
+                    <f:ajax execute="@this" render="delete-modal" />
+                </h:commandButton>
+            </h:column>
+        </h:dataTable>
+
+
+    </h:form>
+
+</ui:composition>

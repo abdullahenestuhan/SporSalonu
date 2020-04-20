@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:form id="gelisim-form">
+        <div class="form-group">
+            <h:inputHidden value="#{gelisimController.gelisim.gelisim_id}"/>
+            <label for="inputName">ÜYE ADI</label>
+            <h:selectOneMenu  styleClass="custom-select" id="üye" value="#{gelisimController.gelisim.üye}" converter="üyeConverter" >
+                <f:selectItems value="#{gelisimController.ülist}" var="gelisim" itemValue="#{gelisim}" itemLabel="#{gelisim.ad}"/>
+            </h:selectOneMenu>
+        </div>
+        <div class="form-group">
+           <label for="inputName">ESKİ KG</label>
+            <h:inputText styleClass="form-control" value="#{gelisimController.gelisim.eski_kg}"/><br/>
+        </div>
+        <div class="form-group">
+            <label for="inputName">YENİ KG</label>
+            <h:inputText styleClass="form-control" value="#{gelisimController.gelisim.yenikg}"/><br/>
+        </div>
+        <div class="form-group">
+            <label for="inputName">YENİ VÜCUT KÜTLE İNDEKSİ</label>
+            <h:inputText styleClass="form-control" value="#{gelisimController.gelisim.yenivücutkütleindeksi}"/><br/>
+        </div> 
+        <div class="form-group">
+            <label for="inputName">ESKİ VÜCUT KÜTLE İNDEKSİ</label>
+            <h:inputText styleClass="form-control" value="#{gelisimController.gelisim.eskivücutkütleindeksi}"/><br/>
+        </div> 
+        <div class="form-group">
+            <label for="inputName">BOY</label>
+            <h:inputText styleClass="form-control" value="#{gelisimController.gelisim.boy}"/><br/>
+        </div> 
+        <div class="form-group">
+            <div class="btn-group">
+                <h:commandButton rendered="#{gelisimController.gelisim.gelisim_id != null}" styleClass="btn btn-info" value="Guncelle " action="#{gelisimController.guncelle}">
+                    <f:ajax execute="gelisim-form" render="gelisim-form gelisim-table"/>
+                </h:commandButton>
+                <h:commandButton rendered="#{gelisimController.gelisim.gelisim_id == null}" styleClass="btn btn-primary" value="CREATE " action="#{gelisimController.create}">
+                    <f:ajax execute="gelisim-form" render="gelisim-form gelisim-table"/>
+                </h:commandButton>
+                <h:commandButton rendered="#{gelisimController.gelisim.gelisim_id != null}" styleClass="btn btn-secondary" value="Clear Form " action="#{gelisimController.clearForm}">
+                    <f:ajax execute="@this" render="gelisim-form gelisim-table"/>
+                </h:commandButton>
+            </div>
+        </div>
+    </h:form>
+
+</ui:composition>
